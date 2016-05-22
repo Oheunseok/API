@@ -74,5 +74,6 @@ elif Operation=="목록":
 
 
 
+
 #ET.ElementTree(note).write("MovieList.xml")
 

@@ -50,6 +50,9 @@ def weekly(note):
         for tag in element.findall("weeklyBoxOffice"):
             print("순번\t\t\t\t\t",tag.findtext("rnum"))
             print("주간/주말 박스오피스 순위\t",tag.findtext("rank"))
+=======
+            print("주간/주말 순위\t\t\t",tag.findtext("rank"))
+>>>>>>> 48c01145b296b8a7ac06edced7ae9ba38b9c4e3c
             print("전주대비 순위증감\t\t",tag.findtext("rankInten"))
             print("랭킹신규진입\t\t\t",tag.findtext("rankOldAndNew"))
             print("영화대표코드\t\t\t", tag.findtext("movieCd"))
@@ -82,6 +85,17 @@ def MovieList(note):
             print("제작국가\t\t\t\t\t", tag.findtext("nationAlt"))
             print("영화장르\t\t\t\t", tag.findtext("genreAlt"))
             print("대표 제작국가명\t\t\t", tag.findtext("repNationNm"))
+=======
+            print("영화대표코드\t\t", tag.findtext("movieCd"))
+            print("영화명(국)\t\t\t", tag.findtext("movieNm"))
+            print("영화명(외)\t\t\t", tag.findtext("movieNmEn"))
+            print("제작연도\t\t\t", tag.findtext("prdtYear"))
+            print("개봉연도\t\t\t", tag.findtext("openDt"))
+            print("영화유형\t\t\t", tag.findtext("typeNm"))
+            print("제작상태\t\t\t", tag.findtext("prdtStatNm"))
+            print("제작국가\t\t\t", tag.findtext("nationAlt"))
+            print("영화장르\t\t\t", tag.findtext("genreAlt"))
+            print("대표 제작국가명\t\t", tag.findtext("repNationNm"))
             print("대표 장르명\t\t\t", tag.findtext("repGenreNm"))
 
             # print("상영스크린수\t\t\t", tag.findtext("peopleNm"))
