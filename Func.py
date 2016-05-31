@@ -83,45 +83,46 @@ def MovieList(note):
             print("영화장르\t\t\t", tag.findtext("genreAlt"))
             print("대표 제작국가명\t\t", tag.findtext("repNationNm"))
             print("대표 장르명\t\t\t", tag.findtext("repGenreNm"))
-
-            # print("상영스크린수\t\t\t", tag.findtext("peopleNm"))
-
-            # print("상영횟수\t\t\t\t", tag.findtext("companyCd"))
-            # print("상영횟수\t\t\t\t", tag.findtext("companyNm"))
             # 공백용
             print()
 
 #def MovieInfo(note):
-    #for element in note.findall("movieInfoResult"):
-        #for tag in element.findall("movieInfo"):
-            # #print("영화대표코드\t\t", tag.findtext("movieCd"))
-           # print("영화명(국)\t\t\t", tag.findtext("movieNm"))
-           # print("영화명(외)\t\t\t", tag.findtext("movieNmEn"))
+        #for element in note.findall("movieInfoResult"):
+            #for tag in element.findall("movieInfo"):
+            #print("영화대표코드\t\t", tag.findtext("movieCd"))
+            #print("영화명(국)\t\t\t", tag.findtext("movieNm"))
+            #print("영화명(외)\t\t\t", tag.findtext("movieNmEn"))
             #print("영화명(원문)\t\t\t", tag.findtext("movieNmOg"))
             #print("제작연도\t\t\t", tag.findtext("prdtYear"))
             #print("상영시간\t\t\t", tag.findtext("showTm"))
             #print("개봉연도\t\t\t", tag.findtext("openDt"))
             #print("영화유형\t\t\t", tag.findtext("typeNm"))
-           # print("제작상태\t\t\t", tag.findtext("prdtStatNm"))
-            #print("제작국가\t\t\t", tag.findtext("nations"))
-            #print("제작국가명\t\t", tag.findtext("nationNm"))
-            #print("장르명\t\t\t", tag.findtext("genreNm"))
-            #print("감독\t\t\t", tag.findtext("directors"))
+        #print("제작상태\t\t\t", tag.findtext("prdtStatNm"))
+        #for element in note.findall("nations"):
+            #for tag in element.findall("nation"):
+        #print("제작국가명\t\t", tag.findtext("nationNm"))
+        #for element in note.findall("genres"):
+            #for tag in element.findall("genre"):
+        #print("장르명\t\t\t", tag.findtext("genreNm"))
+        #for element in note.findall("directors"):
+            #for tag in element.findall("director"):
             #print("감독명\t\t\t", tag.findtext("peopleNm"))
-            #print("제작연도\t\t\t", tag.findtext("peopleNmEn"))
-            #print("상영시간\t\t\t", tag.findtext("actors"))
-            #print("개봉연도\t\t\t", tag.findtext("peopleNm"))
-            #print("영화유형\t\t\t", tag.findtext("peopleNmEn"))
-            #print("제작상태\t\t\t", tag.findtext("cast"))
-            #print("제작국가\t\t\t", tag.findtext("castEn"))
-            #print("영화장르\t\t\t", tag.findtext("showTypes"))
+        #print("제작연도\t\t\t", tag.findtext("peopleNmEn"))
+        #for element in note.findall("actors"):
+            #for tag in element.findall("actor"):
+            #print("배우명\t\t\t", tag.findtext("peopleNm"))
+            #print("배우명(외)\t\t\t", tag.findtext("peopleNmEn"))
+            #print("배역명\t\t\t", tag.findtext("cast"))
+        #print("배역명(외)\t\t\t", tag.findtext("castEn"))
+        #for element in note.findall("showTypes"):
+            #for tag in element.findall("showType"):
             #print("상영형태 구분\t\t", tag.findtext("showTypeGroupNm"))
             #print("상영형태명\t\t\t", tag.findtext("showTypeNm"))
             #print("심의정보\t\t", tag.findtext("audits"))
             #print("심의번호\t\t\t", tag.findtext("auditNo"))
-            #print("관람등급 명칭\t\t\t", tag.findtext("watchGradeNm"))
-    #for element in note.findall("companys"):
-        #for tag in element.findall("company"):
+        #print("관람등급 명칭\t\t\t", tag.findtext("watchGradeNm"))
+        #for element in note.findall("companys"):
+            #for tag in element.findall("company"):
             #print("참여 영화사 코드\t\t\t", tag.findtext("companyCd"))
             #print("참여 영화사명\t\t\t", tag.findtext("companyNm"))
             #print("참여 영화사명(영문)\t\t\t", tag.findtext("companyNmEn"))
@@ -130,18 +131,10 @@ def MovieList(note):
             #print("스텝명\t\t\t", tag.findtext("peopleNm"))
             #print("스텝명(영문)\t\t\t", tag.findtext("peopleNmEn"))
             #print("스텝역할명\t\t", tag.findtext("staffRoleNm"))
-
-
-            # print("상영스크린수\t\t\t", tag.findtext("peopleNm"))
-
-            # print("상영횟수\t\t\t\t", tag.findtext("companyCd"))
-            # print("상영횟수\t\t\t\t", tag.findtext("companyNm"))
             # 공백용
-            print()
+        #print()
 
 def MovieCopList(note):
-    print(note.findtext("companyListResult"))
-    print(note.findtext("totCnt"))
     for element in note.findall("companyList"):
         for tag in element.findall("company"):
             print("영화사대표코드\t\t", tag.findtext("companyCd"))
@@ -150,9 +143,14 @@ def MovieCopList(note):
             print("영화사 분류\t\t\t", tag.findtext("companyPartNames"))
             print("대표자명\t\t\t", tag.findtext("ceoNm"))
             print("필모리스트\t\t\t", tag.findtext("filmoNames"))
-            # print("상영스크린수\t\t\t", tag.findtext("peopleNm"))
-
-            # print("상영횟수\t\t\t\t", tag.findtext("companyCd"))
-            # print("상영횟수\t\t\t\t", tag.findtext("companyNm"))
             # 공백용
             print()
+
+#def searchCodeList(note):
+        #for element in note.findall("codes"):
+            #for tag in element.findall("code"):
+            #print("영화사대표코드\t\t", tag.findtext("fullCd"))
+            #print("영화사명(국)\t\t\t", tag.findtext("korNm"))
+            #print("영화사명(외)\t\t\t", tag.findtext("engNm"))
+            # 공백용
+            #print()

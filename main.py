@@ -17,18 +17,22 @@ Operation=input("오퍼레이션 선택:")
 if(Operation=="일일"):
     Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?"     #일일
     url = urllib.request.urlopen(Oper + key + Dt + Nation)
-elif(Operation=="주간"):
-    Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?"    #주간
+elif(Operation=="주간/주말"):
+    Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?"    #주간/주말
     url = urllib.request.urlopen(Oper + key + Dt + Nation)
+    #elif (Operation == "공통코드조회"):
+    #Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/code/searchCodeList.xml?"  # 공통코드조회
+    #url = urllib.request.urlopen(Oper + key)
 elif(Operation=="목록"):
     Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?"  #목록
     url = urllib.request.urlopen(Oper + key)
+#elif(Operation=="영화정보"):
+    #Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?"  #영화정보
+#url = urllib.request.urlopen(Oper + key)
 elif(Operation=="영화사목록"):
     Oper="http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.xml?"  #영화사목록
     url = urllib.request.urlopen(Oper + key)
-#elif(Operation=="영화정보"):
-   # Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?"  #영화정보
-    #url = urllib.request.urlopen(Oper + key + Dt + Nation)
+
 
 
 # year="2016"
@@ -55,8 +59,13 @@ elif Operation=="주간":
     Func.weekly(note)
 elif Operation=="목록":
     Func.MovieList(note)
+    #elif Operation == "영화정보":
+    #Func.MovieInfo(note)
 elif Operation=="영화사목록":
     Func.MovieCopList(note)
+    #elif Operation == "공통코드조회":
+    #Func.searchCodeList(note)
+
 #elif Operation=="영화정보":
    # Func.MovieInfo(note)
 
