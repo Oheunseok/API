@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 
+
 def indent(elem, level=0):
     i = "\n" + level*"  "
     if len(elem):
@@ -49,10 +50,7 @@ def weekly(note):
     for element in note.findall("weeklyBoxOfficeList"):
         for tag in element.findall("weeklyBoxOffice"):
             print("순번\t\t\t\t\t",tag.findtext("rnum"))
-            print("주간/주말 박스오피스 순위\t",tag.findtext("rank"))
-=======
             print("주간/주말 순위\t\t\t",tag.findtext("rank"))
->>>>>>> 48c01145b296b8a7ac06edced7ae9ba38b9c4e3c
             print("전주대비 순위증감\t\t",tag.findtext("rankInten"))
             print("랭킹신규진입\t\t\t",tag.findtext("rankOldAndNew"))
             print("영화대표코드\t\t\t", tag.findtext("movieCd"))
@@ -75,17 +73,6 @@ def weekly(note):
 def MovieList(note):
     for element in note.findall("movieList"):
         for tag in element.findall("movie"):
-            print("영화대표코드\t\t\t\t\t", tag.findtext("movieCd"))
-            print("영화명(국)\t\t\t", tag.findtext("movieNm"))
-            print("영화명(외)\t\t", tag.findtext("movieNmEn"))
-            print("제작연도\t\t\t", tag.findtext("prdtYear"))
-            print("개봉연도\t\t\t", tag.findtext("openDt"))
-            print("영화유형\t\t\t\t", tag.findtext("typeNm"))
-            print("제작상태\t\t\t\t\t", tag.findtext("prdtStatNm"))
-            print("제작국가\t\t\t\t\t", tag.findtext("nationAlt"))
-            print("영화장르\t\t\t\t", tag.findtext("genreAlt"))
-            print("대표 제작국가명\t\t\t", tag.findtext("repNationNm"))
-=======
             print("영화대표코드\t\t", tag.findtext("movieCd"))
             print("영화명(국)\t\t\t", tag.findtext("movieNm"))
             print("영화명(외)\t\t\t", tag.findtext("movieNmEn"))
@@ -103,4 +90,15 @@ def MovieList(note):
             # print("상영횟수\t\t\t\t", tag.findtext("companyCd"))
             # print("상영횟수\t\t\t\t", tag.findtext("companyNm"))
             # 공백용
+            print()
+
+def CompanyList(note):
+    for element in note.findall("companyList"):
+        for tag in element.findall("company"):
+            print("영화사 코드\t\t\t", tag.findtext("companyCd"))
+            print("영화사명(국)\t\t", tag.findtext("companyNm"))
+            print("영화사명(외)\t\t", tag.findtext("companyNmEn"))
+            print("영화사 분류\t\t\t", tag.findtext("companyPartNames"))
+            print("대표자명\t\t\t", tag.findtext("ceoNm"))
+
             print()

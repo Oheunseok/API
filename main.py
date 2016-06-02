@@ -1,79 +1,62 @@
 import xml.etree.ElementTree as ET
 import urllib.request
 import Func
+import datetime,time
 from Func import indent
 
 
-key="key=430156241533f1d058c603178cc3ca0e"
+key="key=9a3bdfabc4837b2691c9b0f17c7d2575"
+t=datetime.date.today()
+
+# Today=str(t).replace("-","")
+yesterday = datetime.date.today() + datetime.timedelta(days=-1)
+Yesterday=str(yesterday).replace("-","")
 
 
 year="2016"
 mon="05"
-date="13"
+date="22"
+
+print("어제날짜: "+Yesterday)    #오늘껀 통계가 안나와서 출력이 안됨
 Dt="&targetDt="+year+mon+date
+# Dt="&targetDt="+Yesterday
 Nation="&repnationCd="+"F"
 
-Operation=input("오퍼레이션 선택:")
-if(Operation=="일일"):
-    Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?"     #일일
-    url = urllib.request.urlopen(Oper + key + Dt + Nation)
-elif(Operation=="주간"):
-    Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?"    #주간
-    url = urllib.request.urlopen(Oper + key + Dt + Nation)
-elif(Operation=="목록"):
-    Oper="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?"  #목록
-    url = urllib.request.urlopen(Oper + key)
+while(1):
+    Operation=input("오퍼레이션 선택:")
+    if(Operation == "일일"): #일일은 전날까지만
+        Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?"     #일일
+        url = urllib.request.urlopen(Oper + key + Dt + Nation)
+    elif(Operation == "주간"): #주간은 입력한 날짜에 해당하는 주의 주말(금~일요일까지 집계한 내용을 보여줌)
+        Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?"    #주간
+        url = urllib.request.urlopen(Oper + key + Dt + Nation)
+    elif(Operation == "영화목록"):
+        Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?"  #목록
+        url = urllib.request.urlopen(Oper + key)
+    elif(Operation == "영화사목록"):
+        Oper = "http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.xml?"  # 목록
+        url = urllib.request.urlopen(Oper + key)
 
-
-# year="2016"
-# mon="05"
-# date="13"
-# Dt="&targetDt="+year+mon+date
-# Nation="&repnationCd="+"F"
-
-# url=urllib.request.urlopen(Oper+key+Dt+Nation)
-
-tree = ET.parse(url)
-note=tree.getroot()
+    tree = ET.parse(url)
+    note=tree.getroot()
 
 
 #정리해서 보여줌
-indent(note)
+    indent(note)
 
 #xml 문서 그대로 보여줌
 #ET.dump(note)
 
-if Operation=="일일":
-    Func.daily(note)
-elif Operation=="주간":
-    Func.weekly(note)
-elif Operation=="목록":
-    Func.MovieList(note)
-
-# def MoveList():
-#     for element in note.findall("weeklyBoxOfficeList"):
-#         for tag in element.findall("weeklyBoxOffice"):
-#             print("영화대표코드\t\t\t\t\t", tag.findtext("movieCd"))
-#             print("영화명(국)\t\t\t", tag.findtext("movieNm"))
-#             print("영화명(외)\t\t", tag.findtext("movieNmEn"))
-#             print("제작연도\t\t\t", tag.findtext("prdtYear"))
-#             print("개봉연도\t\t\t", tag.findtext("openDt"))
-#             print("영화유형\t\t\t\t", tag.findtext("typeNm"))
-#             print("제작상태\t\t\t\t\t", tag.findtext("prdtStatNm"))
-#             print("제작국가\t\t\t\t\t", tag.findtext("nationAlt"))
-#             print("영화장르\t\t\t\t", tag.findtext("genreAlt"))
-#             print("대표 제작국가명\t\t\t", tag.findtext("repNationNm"))
-#             print("대표 장르명\t\t\t", tag.findtext("repGenreNm"))
-#
-#             # print("상영스크린수\t\t\t", tag.findtext("peopleNm"))
-#
-#             # print("상영횟수\t\t\t\t", tag.findtext("companyCd"))
-#             # print("상영횟수\t\t\t\t", tag.findtext("companyNm"))
-#             # 공백용
-#             print()
+    if Operation=="일일":
+        Func.daily(note)
+    elif Operation=="주간":
+        Func.weekly(note)
+    elif Operation=="영화목록":
+        Func.MovieList(note)
+    elif Operation=="영화사목록":
+        Func.CompanyList(note)
 
 
 
-
-#ET.ElementTree(note).write("MovieList.xml")
+    ET.ElementTree(note).write("XML_test.xml")
 
