@@ -3,6 +3,7 @@ import urllib.request
 import Func
 import datetime,time
 from Func import indent
+from urllib.parse import quote
 
 
 key="key=9a3bdfabc4837b2691c9b0f17c7d2575"
@@ -14,8 +15,8 @@ Yesterday=str(yesterday).replace("-","")
 
 
 year="2016"
-mon="05"
-date="22"
+mon="06"
+date="01"
 
 print("어제날짜: "+Yesterday)    #오늘껀 통계가 안나와서 출력이 안됨
 Dt="&targetDt="+year+mon+date
@@ -24,6 +25,10 @@ Nation="&repnationCd="+"F"
 
 while(1):
     Operation=input("오퍼레이션 선택:")
+
+    if Operation=="홈페이지":
+        Func.ConnectSite()
+        continue
     if(Operation == "일일"): #일일은 전날까지만
         Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?"     #일일
         url = urllib.request.urlopen(Oper + key + Dt + Nation)
@@ -31,11 +36,31 @@ while(1):
         Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?"    #주간
         url = urllib.request.urlopen(Oper + key + Dt + Nation)
     elif(Operation == "영화목록"):
-        Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?"  #목록
-        url = urllib.request.urlopen(Oper + key)
+        NGCheck = False
+        criteria=""
+        criteria=str(input("검색 조건 입력(영화명,감독명,제작연도,개봉연도,코드명):"))
+        Word=str(input("검색어 입력 "))
+        Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?"  # 목록
+        if (len(Word)):
+            if criteria=="영화명":
+                url = urllib.request.urlopen(Oper + key + "&movieNm=" + quote("%s" % Word))
+            elif criteria == "감독명":
+                url = urllib.request.urlopen(Oper + key + "&directorNm=" + quote("%s" % Word))
+            elif criteria == "제작연도":
+                url = urllib.request.urlopen(Oper + key + "&openStartDt=" + quote("%s" % Word))
+            elif criteria == "개봉연도":
+                url = urllib.request.urlopen(Oper + key + "&prdtStartYear=" + quote("%s" % Word))
+            elif criteria == "코드명":
+                url = urllib.request.urlopen(Oper + key + "&movieTypeCd=" + quote("%s" % Word))
+            else:
+                continue
+        else:
+            #미설정시
+            url = urllib.request.urlopen(Oper + key + "&itemPerPage=1000")
     elif(Operation == "영화사목록"):
         Oper = "http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.xml?"  # 목록
         url = urllib.request.urlopen(Oper + key)
+
 
     tree = ET.parse(url)
     note=tree.getroot()
@@ -55,6 +80,7 @@ while(1):
         Func.MovieList(note)
     elif Operation=="영화사목록":
         Func.CompanyList(note)
+
 
 
 

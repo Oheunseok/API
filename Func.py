@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import webbrowser
 
 
 def indent(elem, level=0):
@@ -102,3 +103,14 @@ def CompanyList(note):
             print("대표자명\t\t\t", tag.findtext("ceoNm"))
 
             print()
+def ConnectSite():
+    print("원하는 극장 홈페이지 선택")
+    sel=int(input("1.CGV 2.메가박스 3. 롯데시네마"))
+    if(sel==1):
+        site='www.cgv.co.kr'
+    elif(sel==2):
+        site='www.megabox.co.kr'
+    elif(sel==3):
+        site='www.lottecinema.co.kr'
+
+    webbrowser.open_new(site)
