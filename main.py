@@ -20,7 +20,7 @@ Yesterday=str(yesterday).replace("-","")
 # date="13"
 
 
-Func.AddAlarm()
+# Func.AddAlarm()
 Func.SendAlarm()
 print("어제날짜: "+Yesterday)    #오늘껀 통계가 안나와서 출력이 안됨
 # Dt="&targetDt="+year+mon+date
@@ -38,12 +38,16 @@ while(1):
     주간
     영화목록
     영화사목록
+    알람설정
+    알람보내기
     """)
     Operation=input("오퍼레이션 선택:")
 
     if Operation=="극장사이트":
         Func.ConnectCinema()
         continue
+
+
     if(Operation == "일일"): #일일은 전날까지만
         day=input("조회날짜 입력(yyyymmdd)")
         if(len(day)==8 ):
@@ -51,6 +55,12 @@ while(1):
         Oper = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?"     #일일
         url = urllib.request.urlopen(Oper + key + Dt )
 
+    elif (Operation == "알람설정"):
+        Func.AddAlarm()
+        continue
+    elif (Operation == "알람보내기"):
+        Func.SendAlarm()
+        continue
 
 
     elif(Operation == "주간"): #주간은 입력한 날짜에 해당하는 주의 주말(금~일요일까지 집계한 내용을 보여줌)
@@ -83,6 +93,7 @@ while(1):
     elif(Operation == "영화사목록"):
         Oper = "http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.xml?"  # 목록
         url = urllib.request.urlopen(Oper + key)
+
 
 
     tree = ET.parse(url)

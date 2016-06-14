@@ -226,6 +226,7 @@ def SendAlarm():
             continue
         renewed_list.append(line)
     f.close()
+    # renewed_list.sort()
 
     f = open("Alarm.txt", 'w')
     i=0
