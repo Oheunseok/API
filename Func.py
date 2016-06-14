@@ -210,6 +210,7 @@ def AddAlarm():
     f.close()
 
 def SendAlarm():
+    #발신 후에는 파일을 시간순으로 정렬하게 함
     # sa=gmail.
     f = open("Alarm.txt", 'r')
 
@@ -226,13 +227,17 @@ def SendAlarm():
             continue
         renewed_list.append(line)
     f.close()
-    # renewed_list.sort()
+    renewed_list.sort()
 
     f = open("Alarm.txt", 'w')
     i=0
     while(i<len(renewed_list)):
         f.write(renewed_list[i])
         i+=1
+
     f.close()
+
+
+
 
 
